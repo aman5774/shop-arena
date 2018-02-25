@@ -1,0 +1,8 @@
+.form-center{
+    max-width:600px;
+    margin:5% auto;
+}
+
+legend{
+    font-weight: bold;
+}

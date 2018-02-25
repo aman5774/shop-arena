@@ -17,7 +17,7 @@ const express     = require("express"),
 // Adding required utilities & middleware
 //=========================================================================================
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname + "public")));
+app.use(express.static(path.join(__dirname + "/public")));
 app.use(methodOverride("_method"));
 app.use(cors());
 
@@ -50,6 +50,20 @@ var usersRoutes = require("./routes/users");
 // Using the defined routes
 //=========================================================================================
 app.use("/users", usersRoutes);
+
+//=========================================================================================
+// Root Route
+//=========================================================================================
+app.get("/", (req, res, next) =>{
+    res.sendFile(path.join(__dirname,"/public/index.html"));
+});
+
+//=========================================================================================
+// Route not found: Display 404 Error Page
+//=========================================================================================
+app.get("*", (req, res, next) =>{
+    res.status(404).json({message:"Route Not Found"});
+});
 
 //=========================================================================================
 // Starting the server

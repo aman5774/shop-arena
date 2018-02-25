@@ -1,0 +1,18 @@
+<div class="form-center">
+    <form (submit)="onLoginSubmit()">
+        <fieldset>
+          <legend>Login</legend>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]='email' name='email' type="email">
+            <small *ngIf="!email" class="form-text text-danger">Email is required.</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" id="password" placeholder="Password" [(ngModel)]='password' name='password' type="password">
+            <small *ngIf="!password" class="form-text text-danger">Password is required.</small>
+          </div>
+          <button type="submit" class="btn btn-success">Login</button>
+        </fieldset>
+    </form>
+</div>

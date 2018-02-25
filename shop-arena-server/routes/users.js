@@ -13,12 +13,11 @@ router.post("/register", (req, res, next) =>{
         firstname:req.body.firstname,
         lastname:req.body.lastname,
         email:req.body.email,
-        username:req.body.username,
         password:req.body.password
     });
 
-    const username = req.body.username;
-    User.getUserByUsername(username, (err, user)=>{
+    const email = req.body.email;
+    User.getUserByEmail(email, (err, user)=>{
         if(err) throw err;
         if(user){
             return res.json({status:false, message:"User Already Registered"});
@@ -40,9 +39,9 @@ router.post("/register", (req, res, next) =>{
 // Authenticate Route
 //=========================================================================================
 router.post("/authenticate", (req, res, next) =>{
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
-    User.getUserByUsername(username, (err, user)=>{
+    User.getUserByEmail(email, (err, user)=>{
         if(err) throw err;
         if(!user){
             return res.json({status:false, message:"User not found"});
@@ -60,9 +59,9 @@ router.post("/authenticate", (req, res, next) =>{
                         id: user._id,
                         firstname: user.firstname,
                         lastname: user.lastname,
-                        username: user.username,
                         email: user.email
-                    }
+                    },
+                    message:"Login Successful"
                 });
             } else {
                 return res.json({status:false, message:"Wrong Password"});
@@ -78,11 +77,6 @@ router.get("/profile", passport.authenticate('jwt',{session:false}), (req, res, 
     res.status(200).json({message:"profile Route", user: req.user});
 });
 
-//=========================================================================================
-// Route not found: Display 404 Error Page
-//=========================================================================================
-router.get("*", (req, res, next) =>{
-    res.status(404).json({message:"Route Not Found"});
-});
+
 
 module.exports = router;
