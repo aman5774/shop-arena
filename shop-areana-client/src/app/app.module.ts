@@ -17,6 +17,7 @@ import { ValidateService } from './services/validate.service';
 import { FlashMessageModule } from 'angular-flash-message';
 import { AuthService } from './services/auth.service';
 import { CategoryComponent } from './components/category/category.component';
+import { ProductDisplayComponent } from './components/product-display/product-display.component';
 
 const appRoutes: Routes = [
   {path:'', component:HomeComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     HomeComponent,
     UserDashboardComponent,
     ProfileComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductDisplayComponent
   ],
   imports: [
     BrowserModule,

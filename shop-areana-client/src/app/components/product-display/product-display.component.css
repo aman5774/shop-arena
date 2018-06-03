@@ -1,0 +1,9 @@
+.products{
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.product-card{
+    margin:10px 10px;
+    border: 1px solid black;
+}
